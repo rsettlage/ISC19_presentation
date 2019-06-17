@@ -1,0 +1,65 @@
+%%
+%% This is file `beamercolorthemefibeamer-mu.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% base.dtx  (with options: `color')
+%% 
+%% 
+%% MODIFICATION ADVICE:
+%% 
+%% If you want to customize this file, it is best to make a copy of
+%% the source file(s) from which it was produced.  Use a different
+%% name for your copy(ies) and modify the copy(ies); this will ensure
+%% that your modifications do not get overwritten when you install a
+%% new release of the standard system.  You should also ensure that
+%% your modified source file does not generate any modified file with
+%% the same name as a standard file.
+%% 
+%% You will also need to produce your own, suitably named, .ins file to
+%% control the generation of files from your source file; this file
+%% should contain your own preambles for the files it generates, not
+%% those in the standard .ins files.
+%% 
+%% The names of the source files used are shown above.
+%% 
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fibeamer/theme/mu/%
+  beamercolorthemefibeamer-mu}[2016/05/06]
+\newenvironment{darkframes}{}{}
+\mode<presentation>
+  \RequirePackage{listings}
+  \RequirePackage{ifthen}
+  \RequirePackage{tikz}
+  \newif\iffibeamer@dark\fibeamer@darkfalse
+  \defbeamertemplate*{background canvas}{fibeamer}{%
+    \ifthenelse{%
+      \boolean{fibeamer@dark} \OR \c@framenumber=0
+    }{%
+      \begin{tikzpicture}
+        \clip (0,\fibeamer@lengths@clipbottom) rectangle
+          (\paperwidth,\fibeamer@lengths@cliptop);
+        \path [inner color = fibeamer@dark@backgroundInner,
+               outer color = fibeamer@dark@backgroundOuter]
+          (0,0) rectangle (\paperwidth,\paperwidth);
+      \end{tikzpicture}
+    }{%
+      \begin{tikzpicture}
+        \clip (0,\fibeamer@lengths@clipbottom) rectangle
+          (\paperwidth,\fibeamer@lengths@cliptop);
+        \path [inner color = fibeamer@light@backgroundInner,
+               outer color = fibeamer@light@backgroundOuter]
+          (0,0) rectangle (\paperwidth,\paperwidth);
+      \end{tikzpicture}
+    }}
+  \setbeamercolor{qed symbol}{%
+    use=block body,
+    fg=block body.fg,
+    bg=block body.bg}
+  \hypersetup{colorlinks,linkcolor=}
+\mode
+<all>
+\endinput
+%%
+%% End of file `beamercolorthemefibeamer-mu.sty'.

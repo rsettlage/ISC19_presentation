@@ -1,0 +1,122 @@
+%%
+%% This is file `beamerouterthemefibeamer-mu.sty',
+%% generated with the docstrip utility.
+%% 
+%% The names of the source files used are shown above.
+%% 
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fibeamer/theme/mu/%
+  beamerouterthemefibeamer-mu}[2016/01/12]
+\mode<presentation>
+  \RequirePackage{ifthen}
+  \RequirePackage{ifpdf}
+  \ifpdf\else
+    \@ifundefined{pdfpagewidth}{\newdimen\pdfpagewidth}{}
+    \@ifundefined{pdfpageheight}{\newdimen\pdfpageheight}{}
+    \pdfpagewidth=\paperwidth
+    \pdfpageheight=\paperheight
+  \fi
+  \RequirePackage{tikz}
+  \RequirePackage{pgfcore}
+  \newlength\fibeamer@lengths@baseunit
+  \fibeamer@lengths@baseunit=3.75mm
+  % The footer padding
+  \newlength\fibeamer@lengths@footerpad
+  \setlength\fibeamer@lengths@footerpad{%
+    \fibeamer@lengths@baseunit}
+  % The side margins
+  \newlength\fibeamer@lengths@margin
+  \setlength\fibeamer@lengths@margin{%
+    3\fibeamer@lengths@baseunit}
+  \setbeamersize{
+    text margin left=\fibeamer@lengths@margin,
+    text margin right=\fibeamer@lengths@margin}
+  % The upper margin
+  \newlength\fibeamer@lengths@titleline
+  \setlength\fibeamer@lengths@titleline{%
+    3\fibeamer@lengths@baseunit}
+  % The background clipping
+  \newlength\fibeamer@lengths@clipbottom
+  \setlength\fibeamer@lengths@clipbottom\paperwidth
+  \addtolength\fibeamer@lengths@clipbottom{-\paperheight}
+  \setlength\fibeamer@lengths@clipbottom{%
+    0.5\fibeamer@lengths@clipbottom}
+  \newlength\fibeamer@lengths@cliptop
+  \setlength\fibeamer@lengths@cliptop\paperwidth
+  \addtolength\fibeamer@lengths@cliptop{%
+    -\fibeamer@lengths@clipbottom}
+  % The logo size
+  \newlength\fibeamer@lengths@logowidth
+  \setlength\fibeamer@lengths@logowidth{%
+    14\fibeamer@lengths@baseunit}
+  \newlength\fibeamer@lengths@logoheight
+  \setlength\fibeamer@lengths@logoheight{%
+    0.4\fibeamer@lengths@logowidth}
+  \defbeamertemplate*{navigation symbols}{fibeamer}{}
+  \defbeamertemplate*{headline}{fibeamer}{}
+  \defbeamertemplate*{frametitle}{fibeamer}{%
+    \vskip-1em % Align the text with the top border
+    \vskip\fibeamer@lengths@titleline
+    \usebeamercolor[fg]{frametitle}%
+    \usebeamerfont{frametitle}%
+      \insertframetitle\par%
+    \usebeamercolor[fg]{framesubtitle}%
+    \usebeamerfont{framesubtitle}%
+      \insertframesubtitle}
+  \defbeamertemplate*{footline}{fibeamer}{%
+    \ifnum\c@framenumber=0\else%
+      \begin{tikzpicture}[overlay]
+        \node[anchor=south east,
+          yshift=\fibeamer@lengths@footerpad,
+          xshift=-\fibeamer@lengths@footerpad] at
+          (current page.south east) {
+            \usebeamercolor[fg]{framenumber}%
+            \usebeamerfont{framenumber}%
+            \insertframenumber/\inserttotalframenumber};
+      \end{tikzpicture}
+    \fi}
+  \defbeamertemplate*{title page}{fibeamer}{%
+    % This is slide 0
+    \setcounter{framenumber}{0}
+
+    % Input the title
+    \usebeamerfont{title}%
+    \usebeamercolor[fg]{title}%
+    \begin{minipage}[b][2\baselineskip][b]{\textwidth}%
+      \raggedright\inserttitle
+    \end{minipage}
+    \vskip-.5\baselineskip
+
+    % Input the dashed line
+    \begin{pgfpicture}
+      \pgfsetlinewidth{2pt}
+      \pgfsetroundcap
+      \pgfsetdash{{0pt}{4pt}}{0cm}
+
+      \pgfpathmoveto{\pgfpoint{0mm}{0mm}}
+      \pgfpathlineto{\pgfpoint{\textwidth}{0mm}}
+
+      \pgfusepath{stroke}
+    \end{pgfpicture}
+    \vfill
+    % Input the subtitle
+    \usebeamerfont{subtitle}%
+    \usebeamercolor[fg]{subtitle}%
+    \begin{minipage}{\textwidth}
+      \raggedright%
+      \insertsubtitle%
+    \end{minipage}\vskip.25\baselineskip
+
+    % Input the author's name
+    \usebeamerfont{author}%
+    \usebeamercolor[fg]{author}%
+    \begin{minipage}{\textwidth}
+      \raggedright%
+      \insertauthor%
+    \end{minipage}}
+
+\mode
+<all>
+\endinput
+%%
+%% End of file `beamerouterthemefibeamer-mu.sty'.
